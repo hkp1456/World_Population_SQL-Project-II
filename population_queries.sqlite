@@ -1,0 +1,41 @@
+SELECT COUNT(name) AS 'Total Entries', continent
+FROM countries
+WHERE continent = 'Africa';
+
+SELECT ROUND(SUM(population), 3) AS 'Total in Millions', continent, year
+FROM countries
+JOIN population_years
+  ON countries.id = population_years.country_id
+WHERE continent = 'Oceania' AND year = 2005;
+
+SELECT ROUND(AVG(population), 3) AS 'Average in Millions', continent, year
+FROM countries
+JOIN population_years
+  ON countries.id = population_years.country_id
+WHERE continent = 'South America' AND year = 2003;
+
+SELECT MIN(population) AS 'Total in Millions', continent, year, name
+FROM countries
+JOIN population_years
+  ON countries.id = population_years.country_id
+WHERE year = 2007;
+
+SELECT MIN(year), MAX(year)
+FROM population_years;
+
+SELECT ROUND(AVG(population), 3) AS 'Average Population', name
+FROM countries
+JOIN population_years
+  ON countries.id = population_years.country_id
+WHERE name = 'Poland' AND year BETWEEN 2000 AND 2010;
+
+SELECT COUNT(name) AS 'Countries with THE'
+FROM countries
+WHERE name LIKE '%The%';
+
+SELECT ROUND(SUM(population), 3) AS 'Total in Millions', continent, year
+FROM countries
+JOIN population_years
+  ON countries.id = population_years.country_id
+WHERE year = 2010
+GROUP BY 2;
